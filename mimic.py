@@ -19,35 +19,44 @@ You can try adding in line breaks around 70 columns so the output looks
 better.
 """
 
-__author__ = "???"
+__author__ = "Ben Mckenzie"
 
 import random
 import sys
 
 
 def create_mimic_dict(filename):
-    """Returns a dict mapping each word to a list of words which follow it.
-    For example:
-        Input: "I am a software developer, and I don't care who knows"
-        Output:
-            {
-                "" : ["I"],
-                "I" : ["am", "don't"],
-                "am": ["a"],
-                "a": ["software"],
-                "software" : ["developer,"],
-                "developer," : ["and"],
-                "and" : ["I"],
-                "don't" : ["care"],
-                "care" : ["who"],
-                "who" : ["knows"]
-            }
-    """
     # +++your code here+++
-    pass
+    mimic_dict = {}
+    f =open(filename, 'r')
+    text = f.read()
+    f.close()
+    words = text.split()
+    prev = ''
+    for word in words:
+        if not prev in mimic_dict:
+            mimic_dict[prev] = [word]
+        else:
+            mimic_dict[prev].append(word)
+        prev = word
+    return mimic_dict
+    # Could write as: mimic_dict[prev] = mimic_dict.get(prev, []) + [word]
+    # It's one line, but not totally satisfying.
+        
 
 
-def print_mimic(mimic_dict, start_word):
+
+
+def print_mimic(mimic_dict,word):
+    mimic_text = []
+    while len(mimic_text) <= 200:
+        if word in mimic_dict:
+            next_word = random.choice(mimic_dict[word])
+            mimic_text.append(next_word)
+            word = next_word
+        else:
+            word = ''
+    print(' '.join(mimic_text))
     """Given a previously created mimic_dict and start_word,
     prints 200 random words from mimic_dict as follows:
         - Print the start_word
@@ -55,8 +64,6 @@ def print_mimic(mimic_dict, start_word):
         - Randomly select a new word from the next-list
         - Repeat this process 200 times
     """
-    # +++your code here+++
-    pass
 
 
 # Provided main(), calls mimic_dict() and print_mimic()

@@ -44,3 +44,20 @@ For fun, try feeding your program to itself as input. `$ python mimic.py mimic.p
 5. From your own GitHub repo, create a pull request (PR) *from your `dev` branch back to **your own** master*.
 6. Copy/Paste the URL **link to your PR** as your assignment submission.
 7. Your grader will post code review comments inline within your pull request in your GitHub account. Be sure to respond to any comments and make requested changes. **RESUBMIT** a new link to your PR after making changes. This is the code review iteration cycle.
+
+
+    # key = ''
+    # with open(filename) as file:
+    #     wordlist = f.read().lower().split()
+    # for word in wordlist:
+    #     if key not in word_dict:
+    #         word_dict[key] = [word]
+    #     else:
+    #         word_dict[key] += [word]
+    #     key = word
+
+        random = []
+    for i in range(200):
+        word = random.choice(mimic_dict(start_word, ''))
+        random.append(start_word)
+    print(' '.join(random))
